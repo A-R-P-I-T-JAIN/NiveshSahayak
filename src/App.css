@@ -1,0 +1,8 @@
+.main {
+    background: rgb(144,141,251);
+background: linear-gradient(180deg, rgba(144,141,251,1) 0%, rgba(243,243,243,1) 40%);
+}
+.learning_main {
+    background: rgb(144,141,251);
+background: linear-gradient(180deg, rgba(144,141,251,1) 0%, rgba(243,243,243,1) 100%);
+}
