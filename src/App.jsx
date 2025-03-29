@@ -7,6 +7,8 @@ import Games from './pages/Games';
 import ScamSpotter from './games/ScamSpotter';
 import DailyMoneyManager from './games/DailyMoneyManager';
 import Register from './pages/Register';
+import Register2 from './pages/Register2';
+
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/learning" element={<Learning />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/register2" element={<Register2 />} />
+
           <Route path="/learning/games" element={<Games />} />
           <Route path="/learning/games/scamspotter" element={<ScamSpotter />} />
           <Route path="/learning/games/dailymoneymanager" element={<DailyMoneyManager />} />
