@@ -13,7 +13,7 @@ const Navbar = () => {
       </div>
 
       {/* Navigation Menu */}
-      <div className="flex items-center bg-[#645FEA] text-white px-4 py-1 rounded-full space-x-6 shadow-md border border-black">
+      <div className="flex items-center bg-[#645FEA] text-white px-4 py-1 rounded-full space-x-6 shadow-md ">
         <button onClick={() => navigate("/")} className="px-3 py-1 hover:text-black cursor-pointer">Home</button>
         <button className="px-3 py-1 hover:text-black cursor-pointer">AI Assistance</button>
         <button className="px-3 py-1 hover:text-black cursor-pointer">Community</button>

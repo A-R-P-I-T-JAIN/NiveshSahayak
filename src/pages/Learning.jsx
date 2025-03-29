@@ -8,10 +8,10 @@ const Learning = () => {
     <div className="learning_main flex flex-col items-center justify-center min-h-screen">
       <Navbar />
       {/* Tagline */}
-      <h1 className="text-6xl md:text-7xl font-bold text-[#7673F5] opacity-50 mb-10">
+      <h1 className="text-6xl md:text-7xl font-bold text-[#7673F5] opacity-60 mb-10">
         "Invest Smarter, Learn Faster
       </h1>
-      <h1 className="text-3xl md:text-7xl font-bold text-[#7673F5] opacity-50 mb-10">
+      <h1 className="text-3xl md:text-7xl font-bold text-[#7673F5] opacity-60 mb-10">
         – Master Finance the Fun Way!"
       </h1>
 

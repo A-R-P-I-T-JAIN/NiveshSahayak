@@ -201,15 +201,28 @@ const Home = () => {
         data-scroll-section
         className="w-full h-screen flex items-center justify-start pl-20"
       >
-        <div>
+        <div className="">
           <h1 className="text-8xl text-[#7673F5] font-bold mb-7">
             Niveshसहायक:
           </h1>
-          <p className="text-6xl text-black font-semibold">
+          <p className="text-6xl text-black font-bold text-right">
             AI-Driven Financial
           </p>
-          <p className="text-6xl text-black font-semibold">Empowerment</p>
+          <p className="text-6xl text-black font-bold">Empowerment</p>
+          <div className="flex items-center justify-between gap-6 w-full mt-10" >
+            <div className="w-[250px] h-[150px] rounded-lg" >
+              <h1 className="text-3xl font-bold" >Card</h1>
+              <p className="text-xl font-semibold my-3" >spend limit, and many more</p>
+              <button className="bg-[#7673F5] py-1 px-2 rounded-lg text-white" >-Label</button>
+            </div>
+            <div className="w-[250px] h-[150px] rounded-lg" >
+              <h1 className="text-3xl font-bold" >Card</h1>
+              <p className="text-xl font-semibold my-3" >spend limit, and many more</p>
+              <button className="bg-[#7673F5] py-1 px-2 rounded-lg text-white" >-Label</button>
+            </div>
+          </div>
         </div>
+        
       </div>
 
       <div
@@ -244,53 +257,53 @@ const Home = () => {
           display: displayFeatures ? "block" : "none",
           transition: "display 0.2s",
         }} >
-        <div className="absolute top-18 left-10 bg-white p-3 rounded-lg shadow-lg flex flex-col items-center gap-1 max-w-96">
+        <div className="absolute top-18 left-10 bg-white p-3 rounded-lg shadow-lg flex flex-col items-center gap-1 max-w-96 font-bold">
           AI Assistance
           <div className="bg-black h-0.5 w-[80%]"></div>
-          <p className="text-center">
+          <p className="text-center font-normal">
             Answers financial queries using natural language processing (NLP)
             and suggests relevant saving, budgeting, and investment strategies.
           </p>
-          <button class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition">
+          <button class="px-4 py-2 bg-[#7673F5] text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition">
             Explore
           </button>
           <div className="absolute -bottom-2 -right-2 -rotate-45 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-white"></div>
         </div>
 
-        <div className="absolute bottom-18 left-10 bg-white p-3 rounded-lg shadow-lg flex flex-col items-center gap-1 max-w-96">
+        <div className="absolute bottom-18 left-10 bg-white p-3 rounded-lg shadow-lg flex flex-col items-center gap-1 max-w-96 font-bold">
           Community
           <div className="bg-black h-0.5 w-[80%]"></div>
-          <p className="text-center">
+          <p className="text-center font-normal">
             Answers financial queries using natural language processing (NLP)
             and suggests relevant saving, budgeting, and investment strategies.
           </p>
-          <button class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition">
+          <button class="px-4 py-2 bg-[#7673F5] text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition">
             Explore
           </button>
           <div className="absolute -top-0 -right-4 -rotate-90 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-white"></div>
         </div>
 
-        <div className="absolute top-18 right-10 bg-white p-3 rounded-lg shadow-lg flex flex-col items-center gap-1 max-w-96">
+        <div className="absolute top-18 right-10 bg-white p-3 rounded-lg shadow-lg flex flex-col items-center gap-1 max-w-96 font-bold">
           Learning
           <div className="bg-black h-0.5 w-[80%]"></div>
-          <p className="text-center">
+          <p className="text-center font-normal">
             Answers financial queries using natural language processing (NLP)
             and suggests relevant saving, budgeting, and investment strategies.
           </p>
-          <button class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition">
+          <button class="px-4 py-2 bg-[#7673F5] text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition">
             Explore
           </button>
           <div className="absolute -bottom-2 -left-2 rotate-45 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-white"></div>
         </div>
 
-        <div className="absolute bottom-18 right-10 bg-white p-3 rounded-lg shadow-lg flex flex-col items-center gap-1 max-w-96">
+        <div className="absolute bottom-18 right-10 bg-white p-3 rounded-lg shadow-lg flex flex-col items-center gap-1 max-w-96 font-bold">
           Expenses
           <div className="bg-black h-0.5 w-[80%]"></div>
-          <p className="text-center">
+          <p className="text-center font-normal">
             Answers financial queries using natural language processing (NLP)
             and suggests relevant saving, budgeting, and investment strategies.
           </p>
-          <button class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition">
+          <button class="px-4 py-2 bg-[#7673F5] text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition">
             Explore
           </button>
           <div className="absolute -top-0 -left-4 rotate-90 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-white"></div>
