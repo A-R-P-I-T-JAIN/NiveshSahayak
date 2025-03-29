@@ -7,6 +7,7 @@ import Games from './pages/Games';
 import ScamSpotter from './games/ScamSpotter';
 import DailyMoneyManager from './games/DailyMoneyManager';
 import Register from './pages/Register';
+import Community from './pages/Community';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/learning" element={<Learning />} />
+          <Route path="/community" element={<Community />} />
           <Route path="/register" element={<Register />} />
           <Route path="/learning/games" element={<Games />} />
           <Route path="/learning/games/scamspotter" element={<ScamSpotter />} />
