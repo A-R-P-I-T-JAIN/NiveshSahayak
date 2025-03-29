@@ -30,7 +30,7 @@ const Navbar = () => {
       {/* Navigation Menu */}
       <div className={`flex items-center ${isScrolled ? 'bg-[#645FEA]/90' : 'bg-[#645FEA]'} text-white px-4 py-1 rounded-full space-x-6 shadow-md transition-all duration-300`}>
         <button onClick={() => navigate("/")} className="px-3 py-1 hover:text-black cursor-pointer">Home</button>
-        <button className="px-3 py-1 hover:text-black cursor-pointer">AI Assistance</button>
+        <button onClick={() => navigate('/aiassistance')} className="px-3 py-1 hover:text-black cursor-pointer">AI Assistance</button>
         <button onClick={() => navigate("/community")} className="px-3 py-1 hover:text-black cursor-pointer">Community</button>
         <button onClick={() => navigate("/expenses")} className="px-3 py-1 hover:text-black cursor-pointer">Expenses</button>
         <button onClick={() => navigate("/learning")} className="px-3 py-1 hover:text-black cursor-pointer">Learning</button>
