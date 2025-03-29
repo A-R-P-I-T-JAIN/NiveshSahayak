@@ -16,7 +16,7 @@
     "@react-three/drei": "^10.0.4",
     "@react-three/fiber": "^9.1.0",
     "@shadcn/ui": "^0.0.4",
-    "@tailwindcss/vite": "^4.0.15",
+    "@tailwindcss/vite": "^4.0.17",
     "@types/three": "^0.174.0",
     "canvas-confetti": "^1.9.3",
     "chart.js": "^4.4.8",
