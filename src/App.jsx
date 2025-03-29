@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Games from './pages/Games';
 import ScamSpotter from './games/ScamSpotter';
 import DailyMoneyManager from './games/DailyMoneyManager';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/learning" element={<Learning />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/learning/games" element={<Games />} />
           <Route path="/learning/games/scamspotter" element={<ScamSpotter />} />
           <Route path="/learning/games/dailymoneymanager" element={<DailyMoneyManager />} />
