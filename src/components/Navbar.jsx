@@ -32,6 +32,7 @@ const Navbar = () => {
         <button onClick={() => navigate("/")} className="px-3 py-1 hover:text-black cursor-pointer">Home</button>
         <button className="px-3 py-1 hover:text-black cursor-pointer">AI Assistance</button>
         <button onClick={() => navigate("/community")} className="px-3 py-1 hover:text-black cursor-pointer">Community</button>
+        <button onClick={() => navigate("/expenses")} className="px-3 py-1 hover:text-black cursor-pointer">Expenses</button>
         <button onClick={() => navigate("/learning")} className="px-3 py-1 hover:text-black cursor-pointer">Learning</button>
         <div className="flex items-center px-3 py-1 space-x-1 hover:text-black cursor-pointer">
           <span>En</span>
@@ -44,7 +45,7 @@ const Navbar = () => {
         <button className="px-4 py-1 border border-black rounded-full hover:bg-black hover:text-white transition">
           Signin
         </button>
-        <button className="px-4 py-1 bg-black text-white rounded-full hover:opacity-80 transition">
+        <button onClick={() => navigate('/register')} className="px-4 py-1 bg-black text-white rounded-full hover:opacity-80 transition">
           Signup
         </button>
       </div>
