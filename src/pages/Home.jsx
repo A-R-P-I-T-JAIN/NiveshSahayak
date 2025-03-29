@@ -66,6 +66,7 @@ const Home = () => {
     };
   }, []);
 
+
   useEffect(() => {
     const timeline = gsap.timeline({
       scrollTrigger: {

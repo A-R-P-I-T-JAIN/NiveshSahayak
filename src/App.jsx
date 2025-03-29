@@ -11,6 +11,7 @@ import Register2 from './pages/Register2';
 import Register3 from './pages/Register3';
 import Dashboard from './pages/Dashboard';
 import Community from './pages/Community';
+import Expenses from './pages/Expenses';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/learning" element={<Learning />} />
           <Route path="/community" element={<Community />} />
+          <Route path="/expenses" element={<Expenses />} />
           <Route path="/register" element={<Register />} />
           <Route path="/register2" element={<Register2 />} />
           <Route path="/register3" element={<Register3 />} />
