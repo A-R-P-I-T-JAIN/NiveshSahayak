@@ -12,16 +12,20 @@ import Register3 from "./pages/Register3";
 import Dashboard from "./pages/Dashboard";
 import Community from "./pages/Community";
 import Expenses from "./pages/Expenses";
+import AiAssistance from "./pages/AiAssistance";
 
 function App() {
   return (
     <Router>
       <div className="relative">
-        {/* <Navbar /> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/learning" element={<Learning />} />
+          <Route
+            path="/aiassistance"
+            element={[<Navbar />, <AiAssistance />]}
+          />
           <Route path="/community" element={<Community />} />
           <Route path="/expenses" element={<Expenses />} />
           <Route path="/register" element={<Register />} />
