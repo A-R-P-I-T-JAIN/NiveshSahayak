@@ -8,6 +8,7 @@ import ScamSpotter from "./games/ScamSpotter";
 import DailyMoneyManager from "./games/DailyMoneyManager";
 import Register from "./pages/Register";
 import Register2 from "./pages/Register2";
+import Register3 from "./pages/Register3";
 import Dashboard from "./pages/Dashboard";
 
 function App() {
