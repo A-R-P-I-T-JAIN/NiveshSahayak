@@ -8,6 +8,8 @@ import ScamSpotter from './games/ScamSpotter';
 import DailyMoneyManager from './games/DailyMoneyManager';
 import Register from './pages/Register';
 import Register2 from './pages/Register2';
+import Register3 from './pages/Register3';
+
 
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
           <Route path="/learning" element={<Learning />} />
           <Route path="/register" element={<Register />} />
           <Route path="/register2" element={<Register2 />} />
+          <Route path="/register3" element={<Register3 />} />
+
 
           <Route path="/learning/games" element={<Games />} />
           <Route path="/learning/games/scamspotter" element={<ScamSpotter />} />
