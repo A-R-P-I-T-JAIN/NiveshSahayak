@@ -1,17 +1,17 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css';
-import Home from './pages/Home';
-import Learning from './pages/Learning';
-import Navbar from './components/Navbar';
-import Games from './pages/Games';
-import ScamSpotter from './games/ScamSpotter';
-import DailyMoneyManager from './games/DailyMoneyManager';
-import Register from './pages/Register';
-import Register2 from './pages/Register2';
-import Register3 from './pages/Register3';
-import Dashboard from './pages/Dashboard';
-import Community from './pages/Community';
-import Expenses from './pages/Expenses';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+import Home from "./pages/Home";
+import Learning from "./pages/Learning";
+import Navbar from "./components/Navbar";
+import Games from "./pages/Games";
+import ScamSpotter from "./games/ScamSpotter";
+import DailyMoneyManager from "./games/DailyMoneyManager";
+import Register from "./pages/Register";
+import Register2 from "./pages/Register2";
+import Register3 from "./pages/Register3";
+import Dashboard from "./pages/Dashboard";
+import Community from "./pages/Community";
+import Expenses from "./pages/Expenses";
 
 function App() {
   return (
