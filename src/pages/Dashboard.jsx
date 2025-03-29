@@ -14,6 +14,7 @@ import {
   Cell,
   Legend,
 } from "recharts";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const barData = Array.from({ length: 10 }, (_, i) => ({
@@ -21,6 +22,8 @@ const Dashboard = () => {
     Achieved: Math.random() * 100,
     Target: Math.random() * 80,
   }));
+
+  const navigate = useNavigate();
 
   const lineData = [
     { day: "M", value: 50 },
@@ -49,9 +52,18 @@ const Dashboard = () => {
   return (
     <div className="flex h-screen w-screen bg-gray-100">
       {/* Sidebar */}
-      <div className="w-64 bg-blue-900 text-white p-6 flex flex-col justify-between border border-red-500">
+      <div className="w-64 bg-blue-900 text-white p-6 flex flex-col justify-between ">
         <div className="w-full">
-          <h1 className="text-2xl font-bold">Qaisar</h1>
+          <div className="flex items-center space-x-10 mb-6">
+            <button
+              onClick={() => navigate("/expenses")}
+              className=" py-2 px-4 rounded-lg cursor-pointer bg-[#60A5FA] "
+            >
+              {" "}
+              back
+            </button>
+            <h1 className="text-2xl font-bold">Qaisar</h1>
+          </div>
           <nav className="mt-6 space-y-4">
             <a href="#" className="block py-2 px-4 rounded bg-blue-700">
               Dashboard
