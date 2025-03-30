@@ -1,5 +1,6 @@
 import { FiDownload, FiArrowLeft } from "react-icons/fi";
 import wwe from "../assets/wwe.png";
+import { useNavigate } from "react-router-dom";
 // import googleGemini from "./googleGemini.js";
 
 const ReceiptDetailPage = () => {
@@ -53,13 +54,18 @@ const ReceiptDetailPage = () => {
     },
   };
 
+  const navigate = useNavigate();
+
   //   console.log(googleGemini());
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">
-          <button className="flex items-center text-blue-600 hover:text-blue-800">
+          <button
+            onClick={() => navigate("/recipts")}
+            className="flex items-center text-blue-600 hover:text-blue-800"
+          >
             <FiArrowLeft className="mr-2" /> Back to History
           </button>
           <h1 className="text-2xl font-bold text-gray-800">Receipt Details</h1>

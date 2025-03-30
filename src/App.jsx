@@ -14,7 +14,7 @@ import Community from "./pages/Community";
 import Expenses from "./pages/Expenses";
 import AiAssistance from "./pages/AiAssistance";
 import ReciptsPage from "./components/ReciptsPage";
-import ReciptDetaiilPage from "./components/ReciptDetaiilPage";
+import ReciptDetailPage from "./components/ReciptDetailPage";
 
 function App() {
   return (
@@ -31,7 +31,7 @@ function App() {
           />
           <Route path="/community" element={<Community />} />
           <Route path="/recipts" element={<ReciptsPage />} />
-          <Route path="/singlerecipt" element={<ReciptDetaiilPage />} />
+          <Route path="/singlerecipt" element={<ReciptDetailPage />} />
           <Route path="/expenses" element={<Expenses />} />
           <Route path="/register" element={<Register />} />
           <Route path="/register2" element={<Register2 />} />

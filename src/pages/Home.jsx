@@ -35,6 +35,19 @@ const Home = () => {
   const scrollRef = useRef(null);
 
   useEffect(() => {
+    const lastReload = localStorage.getItem("lastReload");
+    const currentTime = Date.now();
+
+    if (!lastReload) {
+      localStorage.setItem("lastReload", currentTime);
+    } else if (currentTime - lastReload > 5000) {
+      // 5 seconds threshold
+      localStorage.setItem("lastReload", currentTime);
+      window.location.reload();
+    }
+  }, []);
+
+  useEffect(() => {
     const scroll = new LocomotiveScroll({
       el: scrollRef.current,
       smooth: true,
