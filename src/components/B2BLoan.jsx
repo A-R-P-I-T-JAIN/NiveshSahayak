@@ -79,7 +79,7 @@ const B2BLoan = () => {
               : "bg-gray-100 text-gray-600 hover:bg-gray-200"
           }`}
         >
-          Loan Mangwao (Borrower)
+          Borrower
         </button>
         <button
           onClick={() => setUserType("lender")}
@@ -89,7 +89,7 @@ const B2BLoan = () => {
               : "bg-gray-100 text-gray-600 hover:bg-gray-200"
           }`}
         >
-          Loan Do (Investor)
+          Investor
         </button>
       </div>
 

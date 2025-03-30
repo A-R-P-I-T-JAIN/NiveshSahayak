@@ -14,7 +14,7 @@ import Community from "./pages/Community";
 import Expenses from "./pages/Expenses";
 import AiAssistance from "./pages/AiAssistance";
 import ReciptsPage from "./components/ReciptsPage";
-import ReciptDetailPage from "./components/ReciptDetailPage";
+import ReciptDetaiilPage from "./components/ReciptDetaiilPage";
 
 function App() {
   return (
@@ -33,6 +33,7 @@ function App() {
           <Route path="/recipts" element={<ReciptsPage />} />
           <Route path="/singlerecipt" element={<ReciptDetailPage />} />
           <Route path="/expenses" element={<Expenses />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/register2" element={<Register2 />} />
           <Route path="/register3" element={<Register3 />} />
