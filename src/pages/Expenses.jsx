@@ -7,7 +7,7 @@ import ReimbursementForm from "../components/ReimbursementForm";
 import { useNavigate } from "react-router-dom";
 
 export default function Expenses() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [showReimbursementForm, setShowReimbursementForm] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -34,7 +34,7 @@ export default function Expenses() {
       // Here you would typically handle the file upload to your server
       console.log("Uploading file:", selectedFile);
       alert(`File "${fileName}" uploaded successfully!`);
-      
+
       // Reset after upload
       setSelectedFile(null);
       setFileName("No file chosen");
@@ -54,8 +54,17 @@ export default function Expenses() {
           <FaBars size={24} />
         </button>
         <nav className="space-y-4">
-          <a onClick={() => navigate('/dashboard')} className="block text-gray-700 font-medium cursor-pointer">
+          <a
+            onClick={() => navigate("/dashboard")}
+            className="block text-gray-700 font-medium cursor-pointer"
+          >
             Dashboard
+          </a>
+          <a
+            onClick={() => navigate("/recipts")}
+            className="block text-gray-700 font-medium cursor-pointer"
+          >
+            All Recipts and transaction
           </a>
           <a href="#" className="block text-gray-700 font-medium">
             Reimbursement History
@@ -167,7 +176,7 @@ export default function Expenses() {
               </div>
               <button className="mt-3 text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 py-1 px-3 rounded">
                 Add Transaction
-              </button> 
+              </button>
             </div>
 
             {/* Compact Upload Section */}
@@ -181,9 +190,9 @@ export default function Expenses() {
                   <span className="text-xs text-gray-500 truncate max-w-xs">
                     {fileName}
                   </span>
-                  <input 
-                    type="file" 
-                    className="hidden" 
+                  <input
+                    type="file"
+                    className="hidden"
                     onChange={handleFileChange}
                     accept=".pdf,.jpg,.jpeg,.png"
                   />
@@ -215,6 +224,6 @@ export default function Expenses() {
           </div>
         </div>
       </div>
-    </div> 
+    </div>
   );
 }

@@ -13,6 +13,8 @@ import Dashboard from "./pages/Dashboard";
 import Community from "./pages/Community";
 import Expenses from "./pages/Expenses";
 import AiAssistance from "./pages/AiAssistance";
+import ReciptsPage from "./components/ReciptsPage";
+import ReciptDetaiilPage from "./components/ReciptDetaiilPage";
 import Login from "./pages/Login";
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
       <div className="relative">
         <Routes>
           <Route path="/" element={<Home />} />
+
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/learning" element={<Learning />} />
           <Route
@@ -28,6 +31,8 @@ function App() {
             element={[<Navbar />, <AiAssistance />]}
           />
           <Route path="/community" element={<Community />} />
+          <Route path="/recipts" element={<ReciptsPage />} />
+          <Route path="/singlerecipt" element={<ReciptDetaiilPage />} />
           <Route path="/expenses" element={<Expenses />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
