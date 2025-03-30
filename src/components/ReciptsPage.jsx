@@ -7,6 +7,7 @@ import {
   FiTrash2,
 } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import { FiDownload, FiArrowLeft } from "react-icons/fi";
 
 const ReceiptHistory = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -138,11 +139,18 @@ const ReceiptHistory = () => {
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-6xl mx-auto">
+        <button
+          onClick={() => navigate("/expenses")}
+          className="flex items-center text-blue-600 hover:text-blue-800"
+        >
+          <FiArrowLeft className="mr-2" /> Back to Expenses
+        </button>
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-800 mb-2">
             Receipt History
           </h1>
+
           <div className="flex items-center gap-4 text-gray-600">
             <FiFileText className="text-blue-500" />
             <span>{receipts.length} processed receipts</span>
