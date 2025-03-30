@@ -40,7 +40,7 @@ const Home = () => {
 
     if (!lastReload) {
       localStorage.setItem("lastReload", currentTime);
-    } else if (currentTime - lastReload > 5000) {
+    } else if (currentTime - lastReload > 1000) {
       // 5 seconds threshold
       localStorage.setItem("lastReload", currentTime);
       window.location.reload();
