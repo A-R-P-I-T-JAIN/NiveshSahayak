@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 const Register2 = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
   const [formData, setFormData] = useState({
     businessIdType: '',
     businessId: '',
     businessCategory: '',
-    mobileNo: '',
-    otp: '',
-    password: '',
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [tempUserId, setTempUserId] = useState('');
+
+  useEffect(() => {
+    if (location.state?.tempUserId) {
+      setTempUserId(location.state.tempUserId);
+    } else {
+      // Redirect if no tempUserId (direct access)
+      navigate('/register');
+    }
+  }, [location, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,9 +31,43 @@ const Register2 = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    
+    if (!formData.businessIdType || !formData.businessId || !formData.businessCategory) {
+      setError('All fields are required');
+      return;
+    }
+    
+    setLoading(true);
+    setError('');
+    
+    try {
+      await axios.post('http://localhost:5000/api/register/step2', {
+        tempUserId,
+        ...formData
+      });
+      
+      navigate('/register3', { 
+        state: { 
+          userData: location.state?.userData,
+          businessData: formData,
+          tempUserId 
+        } 
+      });
+    } catch (err) {
+      setError(err.response?.data?.error || 'Failed to save business information');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fillDummyData = () => {
+    setFormData({
+      businessIdType: 'GSTIN',
+      businessId: '22ABCDE1234F1Z5',
+      businessCategory: 'Retail & Shops',
+    });
   };
 
   return (
@@ -36,16 +81,22 @@ const Register2 = () => {
           <h1 className="text-3xl font-bold text-gray-900">Setup your account</h1>
           <p>Enter your details to get started!</p>
         </div>
+        
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+            {error}
+          </div>
+        )}
+        
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
             {/* Business ID Type Dropdown */}
             <div className="relative">
-              {/* <label htmlFor="businessIdType" className="block text-gray-700">Business ID Type</label> */}
               <select
                 id="businessIdType"
                 name="businessIdType"
                 required
-                className="block w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 "
+                className="block w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900"
                 value={formData.businessIdType}
                 onChange={handleChange}
               >
@@ -57,7 +108,7 @@ const Register2 = () => {
               </select>
             </div>
             
-            {/* Business ID Input (Always Visible) */}
+            {/* Business ID Input */}
             <div>
               <label htmlFor="businessId" className="block text-gray-700 transition-all duration-300 ease-in-out">
                 {formData.businessIdType === "GSTIN" ? "Enter GSTIN" :
@@ -69,7 +120,11 @@ const Register2 = () => {
                 name="businessId"
                 type="text"
                 required
-                placeholder="Enter Business ID"
+                placeholder={
+                  formData.businessIdType === "GSTIN" ? "22ABCDE1234F1Z5" :
+                  formData.businessIdType === "UDYAM" ? "UDYAM-UP-01-0000001" :
+                  "Your Business ID"
+                }
                 className="block w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900"
                 value={formData.businessId}
                 onChange={handleChange}
@@ -83,7 +138,7 @@ const Register2 = () => {
                 id="businessCategory"
                 name="businessCategory"
                 required
-                className="block w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 "
+                className="block w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900"
                 value={formData.businessCategory}
                 onChange={handleChange}
               >
@@ -103,13 +158,20 @@ const Register2 = () => {
             </div>
           </div>
 
-          <div>
+          <div className="flex justify-between">
+            <button
+              type="button"
+              onClick={fillDummyData}
+              className="px-3 py-1 text-sm text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50"
+            >
+              Fill Dummy Data
+            </button>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              onClick={() => navigate('/register3')}
+              disabled={loading}
+              className="group relative flex justify-center py-2 px-10 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
-              Next
+              {loading ? "Processing..." : "Next"}
             </button>
           </div>
         </form>

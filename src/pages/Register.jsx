@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -10,6 +11,9 @@ const Register = () => {
     password: "",
   });
   const [otpSent, setOtpSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [tempUserId, setTempUserId] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,19 +23,79 @@ const Register = () => {
     }));
   };
 
-  const handleSendOtp = () => {
-    // Here you would typically send the OTP to the user's mobile number
-    console.log("OTP sent to:", formData.mobileNo);
-    setOtpSent(true);
-    // You might want to add a timer here for OTP expiration
+  const handleSendOtp = async () => {
+    if (!formData.mobileNo) {
+      setError("Mobile number is required");
+      return;
+    }
+    
+    setLoading(true);
+    setError("");
+    
+    try {
+      const response = await axios.post('http://localhost:5000/api/register/step1', {
+        mobileNo: formData.mobileNo
+      });
+      
+      setTempUserId(response.data.tempUserId);
+      setOtpSent(true);
+      alert(`OTP sent (for demo: check server console)`);
+    } catch (err) {
+      setError(err.response?.data?.error || "Failed to send OTP");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log("Form submitted:", formData);
-    // Add validation and API call here
-    navigate('/register2');
+  const verifyOtp = async () => {
+    if (!formData.otp) {
+      setError("OTP is required");
+      return;
+    }
+    
+    setLoading(true);
+    setError("");
+    
+    try {
+      await axios.post('http://localhost:5000/api/register/verify-otp', {
+        mobileNo: formData.mobileNo,
+        otp: formData.otp
+      });
+      
+      // OTP verified, proceed to next step
+      handleSubmit();
+    } catch (err) {
+      setError(err.response?.data?.error || "Invalid OTP");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    if (e) e.preventDefault();
+    
+    if (!formData.fullName || !formData.password) {
+      setError("All fields are required");
+      return;
+    }
+    
+    // In a real app, you'd save this data along with the tempUserId
+    navigate('/register2', { 
+      state: { 
+        userData: formData,
+        tempUserId 
+      } 
+    });
+  };
+
+  const fillDummyData = () => {
+    setFormData({
+      fullName: "Rajesh Kumar",
+      mobileNo: "9876543210",
+      otp: "1234", // For testing, since we're not actually sending OTPs
+      password: "Test@123",
+    });
+    setOtpSent(true);
   };
 
   return (
@@ -47,6 +111,13 @@ const Register = () => {
           </h1>
           <p className="text-gray-600">Enter your details to get started!</p>
         </div>
+        
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+            {error}
+          </div>
+        )}
+        
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm space-y-4">
             <div>
@@ -83,14 +154,14 @@ const Register = () => {
               <button
                 type="button"
                 onClick={handleSendOtp}
-                disabled={!formData.mobileNo || otpSent}
+                disabled={!formData.mobileNo || otpSent || loading}
                 className={`px-4 py-2 text-white text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
-                  !formData.mobileNo || otpSent
+                  !formData.mobileNo || otpSent || loading
                     ? "bg-indigo-400 cursor-not-allowed"
                     : "bg-indigo-600 hover:bg-indigo-700"
                 }`}
               >
-                {otpSent ? "OTP Sent" : "Send OTP"}
+                {loading ? "Sending..." : otpSent ? "OTP Sent" : "Send OTP"}
               </button>
             </div>
             {otpSent && (
@@ -135,12 +206,23 @@ const Register = () => {
             >
               Already have an account? Login
             </button>
-            <button
-              type="submit"
-              className="group relative flex justify-center py-2 px-10 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              Next
-            </button>
+            <div className="space-x-2">
+              <button
+                type="button"
+                onClick={fillDummyData}
+                className="px-3 py-1 text-sm text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50"
+              >
+                Fill Dummy Data
+              </button>
+              <button
+                type={otpSent ? "button" : "submit"}
+                onClick={otpSent ? verifyOtp : undefined}
+                disabled={loading}
+                className="group relative flex justify-center py-2 px-10 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                {loading ? "Processing..." : "Next"}
+              </button>
+            </div>
           </div>
         </form>
       </div>

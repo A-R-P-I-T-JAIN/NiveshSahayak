@@ -13,6 +13,7 @@ import Dashboard from "./pages/Dashboard";
 import Community from "./pages/Community";
 import Expenses from "./pages/Expenses";
 import AiAssistance from "./pages/AiAssistance";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           />
           <Route path="/community" element={<Community />} />
           <Route path="/expenses" element={<Expenses />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/register2" element={<Register2 />} />
           <Route path="/register3" element={<Register3 />} />
