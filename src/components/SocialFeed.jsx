@@ -14,28 +14,14 @@ import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
 const SocialFeed = () => {
   // Sample posts data with insights
   const [posts, setPosts] = useState([
+ ,
     {
       id: 1,
-      user: "Amir Khan",
-      avatar: "https://randomuser.me/api/portraits/men/41.jpg",
-      message: "...",
-      image:
-        "https://imgs.search.brave.com/-QqWiDxYVRDI6uQyxq3_9KrBv_jPWMmfjAdZ5YfEWH0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5jaXR5ZWxlY3Ry/aWNzdXBwbHkuY29t/L21lZGlhL21jZy9s/c2x2MDAwNGMxMDAt/Mi9pbWFnZXMvbWNn/X2xzbHYwMDA0YzEw/MDJfcF9tZWQud2Vi/cA",
-      supports: 24,
-      earns: 5,
-      supported: false,
-      views: 356,
-      reach: 1200,
-      engagementRate: "8.2%",
-      timestamp: "2h ago",
-    },
-    {
-      id: 2,
       user: "Rahul Patel",
       avatar: "https://randomuser.me/api/portraits/men/41.jpg",
-      message: "...",
+      message: "Freshly handpicked blooms, crafted into stunning bouquets – Bring home the beauty of nature today!",
       image:
-        "https://imgs.search.brave.com/eFBK0wfnHxTb9AYZlBkM70_B5BXztC8v4xdeZa-PeAM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5jaXR5ZWxlY3Ry/aWNzdXBwbHkuY29t/L21lZGlhL2R1cmFj/ZWxsL3BjMTYwNC9p/bWFnZXMvZHVyYWNl/bGxfcGMxNjA0X3Bf/bWVkLndlYnA",
+        "https://rukminim3.flixcart.com/image/850/1000/xif0q/poster/n/u/m/small-spos11082-poster-nature-rose-flowers-flower-bouquet-colors-original-imaghyv3huhjwhzj.jpeg?q=20&crop=false",
       supports: 15,
       earns: 2,
       supported: true,
@@ -44,6 +30,21 @@ const SocialFeed = () => {
       engagementRate: "6.7%",
       timestamp: "5h ago",
     },
+    {
+      id: 2,
+      user: "Amir Khan",
+      avatar: "https://randomuser.me/api/portraits/men/41.jpg",
+      message: "Handcrafted pottery that speaks tradition and elegance – Explore our collection of unique clay creations!",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUXTpNkPPHYNp00irg_2Wz4M1ItSDXqTq3lA&s",
+      supports: 24,
+      earns: 5,
+      supported: false,
+      views: 356,
+      reach: 1200,
+      engagementRate: "8.2%",
+      timestamp: "2h ago",
+    }
   ]);
 
   // New post state
