@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Line, Bar, Pie } from "react-chartjs-2";
 import "chart.js/auto";
-import { FaBars, FaTimes, FaUpload } from "react-icons/fa";
+import { FaBars, FaTimes, FaUpload, FaSpinner } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import ReimbursementForm from "../components/ReimbursementForm";
+import PersonaliseReport from "../pages/PersonaliseReport";
 import { useNavigate } from "react-router-dom";
 
 export default function Expenses() {
@@ -12,6 +13,8 @@ export default function Expenses() {
   const [showReimbursementForm, setShowReimbursementForm] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileName, setFileName] = useState("No file chosen");
+  const [showReport, setShowReport] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -31,13 +34,19 @@ export default function Expenses() {
 
   const handleUpload = () => {
     if (selectedFile) {
-      // Here you would typically handle the file upload to your server
-      console.log("Uploading file:", selectedFile);
-      alert(`File "${fileName}" uploaded successfully!`);
+      setIsUploading(true);
 
-      // Reset after upload
-      setSelectedFile(null);
-      setFileName("No file chosen");
+      // Simulate 3-second upload delay
+      setTimeout(() => {
+        console.log("Uploading file:", selectedFile);
+        alert(`File "${fileName}" uploaded successfully!`);
+
+        // Reset states and show report
+        setSelectedFile(null);
+        setFileName("No file chosen");
+        setIsUploading(false);
+        setShowReport(true);
+      }, 3000);
     }
   };
 
@@ -64,7 +73,7 @@ export default function Expenses() {
             onClick={() => navigate("/recipts")}
             className="block text-gray-700 font-medium cursor-pointer"
           >
-            All Recipts and transaction
+            All Receipts and transactions
           </a>
           <a href="#" className="block text-gray-700 font-medium">
             Reimbursement History
@@ -200,10 +209,20 @@ export default function Expenses() {
                 {selectedFile && (
                   <button
                     onClick={handleUpload}
-                    className="ml-2 bg-green-500 hover:bg-green-600 text-white py-1 px-3 rounded text-xs flex items-center"
+                    disabled={isUploading}
+                    className="ml-2 bg-green-500 hover:bg-green-600 text-white py-1 px-3 rounded text-xs flex items-center disabled:opacity-50"
                   >
-                    <FaUpload className="mr-1" size={10} />
-                    Upload
+                    {isUploading ? (
+                      <>
+                        <FaSpinner className="animate-spin mr-1" size={10} />
+                        Uploading...
+                      </>
+                    ) : (
+                      <>
+                        <FaUpload className="mr-1" size={10} />
+                        Upload
+                      </>
+                    )}
                   </button>
                 )}
               </div>
@@ -223,6 +242,13 @@ export default function Expenses() {
             </div>
           </div>
         </div>
+
+        {/* Personalise Report Section */}
+        {showReport && (
+          <div className="mt-8">
+            <PersonaliseReport />
+          </div>
+        )}
       </div>
     </div>
 
