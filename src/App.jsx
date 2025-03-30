@@ -16,6 +16,7 @@ import AiAssistance from "./pages/AiAssistance";
 import ReciptsPage from "./components/ReciptsPage";
 import ReciptDetailPage from "./components/ReciptDetailPage";
 import Login from "./pages/Login";
+import PersonaliseReport from "./pages/PersonaliseReport";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/register2" element={<Register2 />} />
           <Route path="/register3" element={<Register3 />} />
+          <Route path="/report" element={<PersonaliseReport />} />
           <Route path="/learning/games" element={<Games />} />
           <Route path="/learning/games/scamspotter" element={<ScamSpotter />} />
           <Route
