@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import axios from 'axios';
 
 const Register2 = () => {
   const navigate = useNavigate();
@@ -18,7 +17,6 @@ const Register2 = () => {
     if (location.state?.tempUserId) {
       setTempUserId(location.state.tempUserId);
     } else {
-      // Redirect if no tempUserId (direct access)
       navigate('/register');
     }
   }, [location, navigate]);
@@ -31,7 +29,7 @@ const Register2 = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     
     if (!formData.businessIdType || !formData.businessId || !formData.businessCategory) {
@@ -42,12 +40,8 @@ const Register2 = () => {
     setLoading(true);
     setError('');
     
-    try {
-      await axios.post('http://localhost:5000/api/register/step2', {
-        tempUserId,
-        ...formData
-      });
-      
+    // Simulate API call delay
+    setTimeout(() => {
       navigate('/register3', { 
         state: { 
           userData: location.state?.userData,
@@ -55,11 +49,7 @@ const Register2 = () => {
           tempUserId 
         } 
       });
-    } catch (err) {
-      setError(err.response?.data?.error || 'Failed to save business information');
-    } finally {
-      setLoading(false);
-    }
+    }, 500);
   };
 
   const fillDummyData = () => {
@@ -90,7 +80,6 @@ const Register2 = () => {
         
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
-            {/* Business ID Type Dropdown */}
             <div className="relative">
               <select
                 id="businessIdType"
@@ -108,7 +97,6 @@ const Register2 = () => {
               </select>
             </div>
             
-            {/* Business ID Input */}
             <div>
               <label htmlFor="businessId" className="block text-gray-700 transition-all duration-300 ease-in-out">
                 {formData.businessIdType === "GSTIN" ? "Enter GSTIN" :
@@ -131,7 +119,6 @@ const Register2 = () => {
               />
             </div>
 
-            {/* Business Category Dropdown */}
             <div className="relative">
               <label htmlFor="businessCategory" className="block text-gray-700">Business Category</label>
               <select

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -13,7 +12,6 @@ const Register = () => {
   const [otpSent, setOtpSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [tempUserId, setTempUserId] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,7 +21,7 @@ const Register = () => {
     }));
   };
 
-  const handleSendOtp = async () => {
+  const handleSendOtp = () => {
     if (!formData.mobileNo) {
       setError("Mobile number is required");
       return;
@@ -32,46 +30,25 @@ const Register = () => {
     setLoading(true);
     setError("");
     
-    try {
-      const response = await axios.post('http://localhost:5000/api/register/step1', {
-        mobileNo: formData.mobileNo
-      });
-      
-      setTempUserId(response.data.tempUserId);
+    // Simulate OTP sending
+    setTimeout(() => {
       setOtpSent(true);
-      alert(`OTP sent (for demo: check server console)`);
-    } catch (err) {
-      setError(err.response?.data?.error || "Failed to send OTP");
-    } finally {
       setLoading(false);
-    }
+      alert(`OTP would be sent to ${formData.mobileNo} in a real app (1234 for demo)`);
+    }, 1000);
   };
 
-  const verifyOtp = async () => {
+  const verifyOtp = () => {
     if (!formData.otp) {
       setError("OTP is required");
       return;
     }
     
-    setLoading(true);
-    setError("");
-    
-    try {
-      await axios.post('http://localhost:5000/api/register/verify-otp', {
-        mobileNo: formData.mobileNo,
-        otp: formData.otp
-      });
-      
-      // OTP verified, proceed to next step
-      handleSubmit();
-    } catch (err) {
-      setError(err.response?.data?.error || "Invalid OTP");
-    } finally {
-      setLoading(false);
-    }
+    // Skip actual verification for demo
+    handleSubmit();
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     if (e) e.preventDefault();
     
     if (!formData.fullName || !formData.password) {
@@ -79,7 +56,9 @@ const Register = () => {
       return;
     }
     
-    // In a real app, you'd save this data along with the tempUserId
+    // Generate a random tempUserId for frontend use
+    const tempUserId = `temp_${Math.random().toString(36).substr(2, 9)}`;
+    
     navigate('/register2', { 
       state: { 
         userData: formData,
@@ -92,7 +71,7 @@ const Register = () => {
     setFormData({
       fullName: "Rajesh Kumar",
       mobileNo: "9876543210",
-      otp: "1234", // For testing, since we're not actually sending OTPs
+      otp: "1234",
       password: "Test@123",
     });
     setOtpSent(true);

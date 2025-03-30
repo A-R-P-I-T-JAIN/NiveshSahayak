@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import axios from 'axios';
 
 const Register3 = () => {
   const navigate = useNavigate();
@@ -19,7 +18,6 @@ const Register3 = () => {
     if (location.state?.tempUserId) {
       setTempUserId(location.state.tempUserId);
     } else {
-      // Redirect if no tempUserId (direct access)
       navigate('/register');
     }
   }, [location, navigate]);
@@ -51,7 +49,7 @@ const Register3 = () => {
     setIsChecked(!isChecked);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     
     if (!isChecked) {
@@ -59,7 +57,6 @@ const Register3 = () => {
       return;
     }
     
-    // Validate based on ownership type
     if (ownershipType === "Sole Proprietorship" && !ownerName) {
       setError("Owner name is required");
       return;
@@ -88,26 +85,29 @@ const Register3 = () => {
     setLoading(true);
     setError("");
     
-    try {
-      const response = await axios.post('http://localhost:5000/api/register/step3', {
-        tempUserId,
-        ownershipType,
-        ownerName,
-        partners: ownershipType === "Partnership Firms" ? partners : undefined,
-        familyRepName: ownershipType === "Family-Owned Business" ? familyRepName : undefined,
-        agreedToTerms: isChecked
-      });
-
-      // Store auth token in localStorage
-      localStorage.setItem('authToken', response.data.token);
+    // Simulate registration completion
+    setTimeout(() => {
+      // Combine all registration data
+      const userData = {
+        ...location.state?.userData,
+        businessData: location.state?.businessData,
+        ownershipData: {
+          ownershipType,
+          ownerName,
+          partners: ownershipType === "Partnership Firms" ? partners : undefined,
+          familyRepName: ownershipType === "Family-Owned Business" ? familyRepName : undefined
+        }
+      };
       
-      // Registration complete, redirect to dashboard or home
-      navigate("/", { state: { registrationComplete: true,userData: response.data.user  } });
-    } catch (err) {
-      setError(err.response?.data?.error || "Registration failed. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+      // Store in localStorage (simulating backend storage)
+      localStorage.setItem('userData', JSON.stringify(userData));
+      
+      // Generate a simple token for auth simulation
+      const authToken = `token_${Math.random().toString(36).substr(2, 16)}`;
+      localStorage.setItem('authToken', authToken);
+      
+      navigate("/", { state: { registrationComplete: true, userData } });
+    }, 1000);
   };
 
   const fillDummyData = () => {
@@ -122,10 +122,10 @@ const Register3 = () => {
 
   return (
     <div className="learning_main relative min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 gap-3">
-      <div className="absolute text-5xl top-10 text-center w-full opacity-70 text-[#7673F5] py-3">
+      {/* <div className="absolute text-5xl top-10 text-center w-full opacity-70 text-[#7673F5] py-3">
         <h1>Let's Personalize Your Business Journey!</h1>
         <h1 className="mt-3">Connecting You with the Right Opportunities</h1>
-      </div>
+      </div> */}
       <div className="max-w-md w-full space-y-8 bg-gray-50 p-8 rounded-lg shadow-md">
         <h2 className="text-center text-3xl font-extrabold text-gray-900">
           Business Details
@@ -138,7 +138,6 @@ const Register3 = () => {
         )}
         
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          {/* Ownership Type Dropdown */}
           <div>
             <label
               htmlFor="ownershipType"
@@ -163,7 +162,6 @@ const Register3 = () => {
             </select>
           </div>
 
-          {/* Conditional Fields Based on Ownership Type */}
           {ownershipType === "Sole Proprietorship" && (
             <div>
               <label
@@ -203,16 +201,13 @@ const Register3 = () => {
                   const count = Number(e.target.value);
                   setPartnerCount(count);
                   
-                  // Adjust partners array
                   if (count > partners.length) {
-                    // Add new partners
                     const newPartners = [...partners];
                     while (newPartners.length < count) {
                       newPartners.push({ name: "", share: "" });
                     }
                     setPartners(newPartners);
                   } else if (count < partners.length) {
-                    // Remove extra partners (from end)
                     setPartners(partners.slice(0, count));
                   }
                 }}
