@@ -14,7 +14,8 @@ import Community from "./pages/Community";
 import Expenses from "./pages/Expenses";
 import AiAssistance from "./pages/AiAssistance";
 import ReciptsPage from "./components/ReciptsPage";
-import ReciptDetaiilPage from "./components/ReciptDetaiilPage";
+import ReciptDetailPage from "./components/ReciptDetailPage";
+import Login from "./pages/Login";
 
 function App() {
   return (
